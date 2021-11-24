@@ -4,6 +4,8 @@
 
 _This repository is primarily for education purposes and shows how to scale out infrastructure in terms of workspaces and services at a large scale_
 
+[What the heck is Terragrunt?](https://youtu.be/LuKYu9ASGyo)
+
 A journey into "modern" DevOps deployment practices.
 - Terragrunt
 - Terraform

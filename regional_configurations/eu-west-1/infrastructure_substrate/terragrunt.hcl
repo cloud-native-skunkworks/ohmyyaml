@@ -8,7 +8,7 @@ locals {
 
 
 terraform {
-    source = "git::git@github.com:cloud-native-skunkworks/ohmyyaml.git//civo?ref=${local.tag}"
+    source = "git::git@github.com:cloud-native-skunkworks/ohmyyaml.git//module_catalogue/infrastructure_substrate?ref=${local.tag}"
 }
 
 inputs = {

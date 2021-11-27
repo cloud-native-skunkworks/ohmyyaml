@@ -17,6 +17,12 @@ The purpose of this repo is to show a simple app, how its packaged in Docker/Hel
 
 <img src="images/example.png" width="700">
 
+## Flow
+
+Terragrunt has two callable Terraform modules
+- The first will deploy an EKS cluster out
+- The second will deploy applications through Terraform helm provider onto the cluster 
+
 ## Requirements
 
 - AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
@@ -43,3 +49,10 @@ Downloading terraform-aws-modules/eks/aws 17.24.0 for eks...
 
 Initializing the backend...
 ```
+
+### Caveats
+
+I have hosted the built application in a temporary S3 bucket as I do not have a chart museum deployment.
+
+e.g. `chart  = "https://cns-tmp.s3.eu-west-1.amazonaws.com/ohmyyaml-0.1.0.tgz"`
+This will need to be `helm package` and published somewhere like the above.

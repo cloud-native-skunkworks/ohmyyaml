@@ -17,6 +17,10 @@ terragrunt-apply-infra:
 	cd regional_configurations/eu-west-1/infrastructure_substrate && \
 	trap "cd ../../../" SIGINT SIGTERM ERR EXIT && \
 	terragrunt apply --terragrunt-source ../../../module_catalogue/infrastructure_substrate
+terragrunt-destroy-infra:
+	cd regional_configurations/eu-west-1/infrastructure_substrate && \
+	trap "cd ../../../" SIGINT SIGTERM ERR EXIT && \
+	terragrunt destroy --terragrunt-source ../../../module_catalogue/infrastructure_substrate
 terragrunt-apply-deployments:
 	cd regional_configurations/eu-west-1/deployments && \
 	trap "cd ../../../" SIGINT SIGTERM ERR EXIT && \

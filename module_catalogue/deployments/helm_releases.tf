@@ -1,7 +1,7 @@
-resource "helm_release" "ohmyyaml-app" {
+resource "helm_release" "ohmyyaml" {
   name        = "ohmyyaml"
   chart       = "ohmyyaml"
-  repository  = "../../app/charts"
+  repository  = "${var.charts_directory}/charts"
   namespace   = "default"
   max_history = 3
 }

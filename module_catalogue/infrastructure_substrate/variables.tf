@@ -1,9 +1,6 @@
 variable "cluster_name" {
     default = "tf-test-cluster"
 }
-variable "vpc_id" {
-    default = "vpc-12345678"
-}
 variable "subnets" {
     default = ["subnet-12345678", "subnet-87654321"]
 }

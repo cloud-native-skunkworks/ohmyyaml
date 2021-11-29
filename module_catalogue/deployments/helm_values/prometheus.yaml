@@ -1,0 +1,40 @@
+prometheus:
+  baseURL: "https://prometheus.${fqdn}"
+  thanosIngress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/router.tls.domains.n.main: "prometheus-thanos-sidecar.${environment}.civo.io"
+      nginx.ingress.kubernetes.io/router.tls: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+      cert-manager.io/cluster-issuer: "letsencrypt-production-dns"
+    pathType: ImplementationSpecific
+    hosts:
+    - prometheus-thanos-sidecar.${fqdn}
+    paths:
+    - /
+    tls:
+    - secretName: prometheus-thanos-sidecar.${fqdn}
+      hosts:
+      - prometheus-thanos-sidecar.${fqdn}
+  thanosService:
+    enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/router.tls.domains.n.main: "prometheus.${fqdn}"
+      nginx.ingress.kubernetes.io/router.tls: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      cert-manager.io/cluster-issuer: "letsencrypt-production-dns"
+    pathType: ImplementationSpecific
+    hosts:
+      - "prometheus.${fqdn}"
+    tls:
+      - secretName: prometheus-https-cert
+        hosts:
+          - "prometheus.${fqdn}"
+  prometheusSpec:
+   ruleSelectorNilUsesHelmValues: false
+   serviceMonitorSelectorNilUsesHelmValues: false

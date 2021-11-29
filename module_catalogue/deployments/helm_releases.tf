@@ -1,13 +1,16 @@
+locals {
+  nginx_template = templatefile("${path.module}/helm_values/nginx.yaml", {
+  })
+  prometheus_template = templatefile("${path.module}/helm_values/prometheus.yaml", {
+    "fqdn" = var.fqdn
+  })
+}
+
 resource "helm_release" "ohmyyaml" {
   name        = "ohmyyaml"
   chart  = "https://cns-tmp.s3.eu-west-1.amazonaws.com/ohmyyaml-0.1.0.tgz"
   namespace   = "default"
   max_history = 3
-}
-
-locals {
-  nginx_template = templatefile("${path.module}/helm_values/nginx.yaml", {
-  })
 }
 
 resource "helm_release" "nginx-ingress" {
@@ -37,4 +40,19 @@ resource "helm_release" "cert-manager" {
     value = "true"
   }
 
+}
+
+resource "helm_release" "prometheus" {
+  name             = "prom"
+  chart            = "kube-prometheus-stack"
+  repository       = "https://prometheus-community.github.io/helm-charts"
+  namespace        = "observability"
+  version          = "18.1.0"
+  create_namespace = true
+  wait             = true
+  reset_values     = true
+  max_history      = 3
+  values = [
+    local.prometheus_template
+  ]
 }

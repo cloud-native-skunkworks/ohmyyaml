@@ -9,3 +9,7 @@ variable "cluster_endpoint" {
 variable "cluster_name" {
     default = "tf-test-cluster"
 }
+variable "fqdn" {
+    default = "crystalbasilica.co.uk"
+    descrdescription = "value" = "The domain name to use for components and ingress"
+}

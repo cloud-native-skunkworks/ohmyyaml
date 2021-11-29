@@ -3,7 +3,7 @@ locals {
     tag = local.terraform_config.locals.tag
     # Environment configuration
     environment_specific_config = read_terragrunt_config(find_in_parent_folders("environment_specific.hcl")) 
-    token = local.environment_specific_config.locals.environment
+    environment = local.environment_specific_config.locals.environment
 }
 
 
@@ -12,5 +12,4 @@ terraform {
 }
 
 inputs = {
-
 }

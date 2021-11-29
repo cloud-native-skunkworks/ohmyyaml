@@ -6,12 +6,6 @@ data "aws_eks_cluster_auth" "eks" {
   name = module.eks.cluster_id
 }
 
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.eks.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks.certificate_authority[0].data)
-  token                  = data.aws_eks_cluster_auth.eks.token
-}
-
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version = "17.24.0"
@@ -39,16 +33,16 @@ data "aws_vpc" "default" {
 
 resource "aws_subnet" "main" {
   vpc_id     = data.aws_vpc.default.id
-  cidr_block = "172.31.255.0/24"
-
+  cidr_block = "172.31.220.0/24"
+  availability_zone = "${var.region}a"
   tags = {
     Name = "Main"
   }
 }
 resource "aws_subnet" "secondary" {
   vpc_id     = data.aws_vpc.default.id
-  cidr_block = "172.31.254.0/24"
-
+  cidr_block = "172.31.221.0/24"
+  availability_zone = "${var.region}b"
   tags = {
     Name = "Secondary"
   }

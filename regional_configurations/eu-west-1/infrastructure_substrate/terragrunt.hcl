@@ -21,5 +21,5 @@ terraform {
 }
 
 inputs = {
-
+    region = local.environment
 }

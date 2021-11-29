@@ -22,3 +22,19 @@ resource "helm_release" "nginx-ingress" {
 
   values = [ local.nginx_template ]
 }
+
+resource "helm_release" "cert-manager" {
+  name             = "cert-manager"
+  chart            = "cert-manager"
+  repository       = "https://charts.jetstack.io"
+  namespace        = "cert-manager"
+  version          = "v1.6.1"
+  create_namespace = true
+  wait             = false
+  max_history      = 3
+  set {
+    name  = "installCRDs"
+    value = "true"
+  }
+
+}

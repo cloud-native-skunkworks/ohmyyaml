@@ -7,3 +7,6 @@ variable "instance_type" {
 variable "asg_max_size" {
     default = "3"
 }
+variable "region" {
+    
+}

@@ -2,6 +2,8 @@
 
 # Ohmyyaml
 
+See the video [walkthrough](https://www.youtube.com/watch?v=AktpY84UBAk)
+
 _This repository is primarily for education purposes and shows how to scale out infrastructure in terms of workspaces and services at a large scale_
 
 This repository effectively deploys a small server displaying an image of a Gopher on the internet.

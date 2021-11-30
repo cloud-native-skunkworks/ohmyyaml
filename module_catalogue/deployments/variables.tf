@@ -11,5 +11,5 @@ variable "cluster_name" {
 }
 variable "fqdn" {
     default = "crystalbasilica.co.uk"
-    descrdescription = "value" = "The domain name to use for components and ingress"
+    description = "The domain name to use for components and ingress"
 }

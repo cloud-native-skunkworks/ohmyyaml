@@ -2,7 +2,7 @@
 
 # Ohmyyaml
 
-[![ohmyyaml](./images/Ohmyyaml!.png)](https://www.youtube.com/watch?v=AktpY84UBA "Ohmyyaml!")
+[![ohmyyaml](./images/Ohmyyaml!.png)](https://youtu.be/AktpY84UBAk "Ohmyyaml!")
 
 _This repository is primarily for education purposes and shows how to scale out infrastructure in terms of workspaces and services at a large scale_
 

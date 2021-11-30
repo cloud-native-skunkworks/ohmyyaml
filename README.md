@@ -1,7 +1,3 @@
-<img src="images/logo.png" width="300">
-
-# Ohmyyaml
-
 [![ohmyyaml](./images/Ohmyyaml!.png)](https://youtu.be/AktpY84UBAk "Ohmyyaml!")
 
 _This repository is primarily for education purposes and shows how to scale out infrastructure in terms of workspaces and services at a large scale_

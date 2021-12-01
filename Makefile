@@ -1,4 +1,8 @@
 .PHONY: docker docker-push docker-build
+create-oci-helm-chart: export HELM_EXPERIMENTAL_OCI=1
+create-oci-helm-chart:
+	helm package ./app/charts/ohmyyaml
+	helm push ohmyyaml-*.tgz oci://ghcr.io/tibbar/ohmyyaml
 docker:
 	docker build -f app/Dockerfile ./app -t tibbar/ohmyyaml:latest
 docker-push:

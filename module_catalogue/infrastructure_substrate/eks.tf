@@ -29,7 +29,7 @@ module "eks" {
 }
 data "aws_vpc" "default" {
   default = true
-} 
+}
 
 resource "aws_subnet" "main" {
   vpc_id     = data.aws_vpc.default.id

@@ -25,7 +25,7 @@ Terragrunt has two callable Terraform modules
 
 - AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 - TERRAFORM_WORKSPACE_TOKEN for TF cloud
-
+- CR_PAT for the GitHub container registry
 
 ## Terragrunt local usage
 
@@ -48,9 +48,25 @@ Downloading terraform-aws-modules/eks/aws 17.24.0 for eks...
 Initializing the backend...
 ```
 
-### Caveats
+### Helm OCI Chart
 
-I have hosted the built application in a temporary S3 bucket as I do not have a chart museum deployment.
+Helm 3 supports [OCI](https://helm.sh/docs/topics/registries/) for package distribution. Chart packages are able to 
+be stored and shared across OCI-based registries.
 
-e.g. `chart  = "https://cns-tmp.s3.eu-west-1.amazonaws.com/ohmyyaml-0.1.0.tgz"`
-This will need to be `helm package` and published somewhere like the above.
+There is an additional task in the Makefile to build the OCI chart.
+
+```
+create-oci-helm-chart:
+	helm package ./app/charts/ohmyyaml
+	helm push ohmyyaml-*.tgz oci://ghcr.io/tibbar/ohmyyaml
+```
+
+To deploy the chart, you need to login to the ghcr.io registry via the `docker login` command.
+
+```
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+> Login Succeeded 
+```
+
+See [this guide](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
+for more information on how to create a personal access token.

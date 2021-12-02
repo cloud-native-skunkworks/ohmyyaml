@@ -2,13 +2,15 @@ locals {
   nginx_template = templatefile("${path.module}/helm_values/nginx.yaml", {
   })
   prometheus_template = templatefile("${path.module}/helm_values/prometheus.yaml", {
-    "fqdn" = var.fqdn
+    "fqdn"        = var.fqdn
+    "environment" = var.environment
   })
 }
 
 resource "helm_release" "ohmyyaml" {
   name        = "ohmyyaml"
-  chart  = "https://cns-tmp.s3.eu-west-1.amazonaws.com/ohmyyaml-0.1.0.tgz"
+  version     = "0.1.0"
+  chart       = "oci://ghcr.io/tibbar/ohmyyaml"
   namespace   = "default"
   max_history = 3
 }

@@ -4,7 +4,7 @@ prometheus:
     enabled: true
     ingressClassName: nginx
     annotations:
-      nginx.ingress.kubernetes.io/router.tls.domains.n.main: "prometheus-thanos-sidecar.${environment}.civo.io"
+      nginx.ingress.kubernetes.io/router.tls.domains.n.main: "prometheus-thanos-sidecar.${environment}.${fqdn}"
       nginx.ingress.kubernetes.io/router.tls: "true"
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/backend-protocol: "GRPC"

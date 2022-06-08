@@ -44,7 +44,6 @@ Downloading terraform-aws-modules/eks/aws 17.24.0 for eks...
 - eks in .terraform/modules/eks
 - eks.fargate in .terraform/modules/eks/modules/fargate
 - eks.node_groups in .terraform/modules/eks/modules/node_groups
-
 Initializing the backend...
 ```
 
